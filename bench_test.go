@@ -602,11 +602,14 @@ func TestConvert(t *testing.T) {
 		}
 		fmt.Println("sonic.Marshal", time.Since(start))
 
-		//!!!转换失败!!!
+		//!!!转换失败!!!深拷贝还很慢!!!
 		//start = time.Now()
 		//for i := 0; i < N; i++ {
 		//	d := &TwitterStruct{}
-		//	err := copier.Copy(d, src)
+		//	err := copier.CopyWithOption(d, src, copier.Option{
+		//		CaseSensitive: true,
+		//		DeepCopy:      true,
+		//	})
 		//	if err != nil {
 		//		panic(err)
 		//	}
